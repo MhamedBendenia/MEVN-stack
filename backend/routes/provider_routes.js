@@ -1,3 +1,20 @@
+/**
+*  @swagger
+*   components:
+*     schemas:
+*       Provider:
+*         type: object
+*         required:
+*           - name
+*         properties:
+*           _id:
+*             type: string
+*             description: The auto-generated id of the provider.
+*           name:
+*             type: string
+*             description: The name of the provider.
+*/
+
 const express = require('express');
 const router = express.Router();
 const API = require("../controllers/provider_api");

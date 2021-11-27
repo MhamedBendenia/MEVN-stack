@@ -1,3 +1,130 @@
+
+    /**
+     * @swagger
+     * /client:
+     *   get:
+     *     summary: Get clients list
+     *     description: Get all clients and sort them by name, email, and phone.
+     *     tags:
+     *       - Client
+     *     parameters:
+     *      - in: body
+     *        name: sort-by
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/client?sort-by=-name
+     *        required: false
+     *        description: The sorting parameter, it can be name, email, or phone. It has to be preceded with "-" for descending and "+" for ascending.
+     *     responses:
+     *       200:
+     *         description: Returns a list of all clients.
+     *       404:
+     *         description: Not found.
+     *   
+     *   post:
+     *     summary: Create new client
+     *     description: Create new client.
+     *     tags:
+     *       - Client
+     *     parameters:
+     *      - in: body
+     *        name: Client object
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/client?name=John&email=john@test.com&phone=0555555555
+     *        required: true
+     *        description: The client object contains name, email, and phone.
+     *     responses:
+     *       201:
+     *         description: Client created successfully.
+     *       400:
+     *         description: Error.
+     * 
+     * /client/{_id}:
+     *   get:
+     *     summary: Get client by id
+     *     description: Get client by id.
+     *     tags:
+     *       - Client
+     *     parameters:
+     *      - in: path
+     *        name: _id
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/client/<client_id>
+     *        required: true
+     *        description: The id is a unique value that define each Client.
+     *     responses:
+     *       200:
+     *         description: Returns the client data.
+     *       404:
+     *         description: Not found.
+     * 
+     *   patch:
+     *     summary: Update client data
+     *     description: Update the given client id data.
+     *     tags:
+     *       - Client
+     *     parameters:
+     *      - in: path
+     *        name: _id
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/client/<client_id>
+     *        required: true
+     *        description: The id is a unique value that define each Client.
+     *      - in: body
+     *        name: Client object
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/client/<client_id>?name=John&email=john@test.com&phone=0555555555
+     *        required: true
+     *        description: The client object contains name, email, and phone.
+     *     responses:
+     *       200:
+     *         description: Client updated successfully.
+     *       404:
+     *         description: Not found.
+     * 
+     * /client/attach:
+     *   post:
+     *     summary: Attach provider to client
+     *     description: Get provider by id and attach it to the given client.
+     *     tags:
+     *       - Client
+     *     parameters:
+     *      - in: body
+     *        name: client and provider ids
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/client/attach?client_id=<client_id>&provider_id=<provider_id>
+     *        required: true
+     *     responses:
+     *       200:
+     *         description: Provider attached successfully.
+     *       400:
+     *         description: Error.
+     * 
+     * /client/detach:
+     *   post:
+     *     summary: Detach provider from client
+     *     description: Get provider by id and detach it from the given client.
+     *     tags:
+     *       - Client
+     *     parameters:
+     *      - in: body
+     *        name: client and provider ids
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/client/detach?client_id=<client_id>&provider_id=<provider_id>
+     *        required: true
+     *     responses:
+     *       200:
+     *         description: Provider detached successfully.
+     *       400:
+     *         description: Error.
+     */
+
 const Client = require('../models/client');
 
 module.exports = class API {

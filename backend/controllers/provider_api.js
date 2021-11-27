@@ -1,5 +1,85 @@
-const Provider = require('../models/provider');
 
+    /**
+     * @swagger
+     * /provider:
+     *   get:
+     *     summary: Get providers list
+     *     description: Get all providers.
+     *     tags:
+     *       - Provider
+     *     responses:
+     *       200:
+     *         description: Returns a list of all providers.
+     *       404:
+     *         description: Not found.
+     *   
+     *   post:
+     *     summary: Create new provider
+     *     description: Create new provider.
+     *     tags:
+     *       - Provider
+     *     parameters:
+     *      - in: body
+     *        name: Provider object
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/provider?name=John
+     *        required: true
+     *        description: The provider object contains the name.
+     *     responses:
+     *       201:
+     *         description: Provider created successfully.
+     *       400:
+     *         description: Error.
+     * 
+     * /provider/{_id}:
+     *   get:
+     *     summary: Get provider by id
+     *     description: Get provider by id.
+     *     tags:
+     *       - Provider
+     *     parameters:
+     *      - in: path
+     *        name: _id
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/provider/<provider_id>
+     *        required: true
+     *        description: The id is a unique value that define each Provider.
+     *     responses:
+     *       200:
+     *         description: Returns the provider data.
+     *       404:
+     *         description: Not found.
+     * 
+     *   patch:
+     *     summary: Update provider data
+     *     description: Update the given provider id data.
+     *     tags:
+     *       - Provider
+     *     parameters:
+     *      - in: path
+     *        name: _id
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/provider/<provider_id>
+     *        required: true
+     *        description: The id is a unique value that define each Provider.
+     *      - in: body
+     *        name: Provider object
+     *        schema:
+     *          type: string
+     *          example: http://localhost:5000/api/provider/<provider_id>?name=John
+     *        required: true
+     *        description: The provider object contains the name.
+     *     responses:
+     *       200:
+     *         description: Provider updated successfully.
+     *       404:
+     *         description: Not found.
+     */
+
+const Provider = require('../models/provider');
 module.exports = class API {
 
     // fetch the providers list

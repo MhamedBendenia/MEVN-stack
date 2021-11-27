@@ -1,0 +1,25 @@
+{"definition": 
+  {
+    "openapi": "3.0.3",
+    "info": {
+      "title": "MEVN stack",
+      "description": "MEVN project for Managing Clients and providers.",
+      "version": "0.0.1",
+      "contact": {
+        "name": "M'hamed Bendenia",
+        "email": "mh.bendenia@gmail.com"
+      }
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5000/api"
+      }
+    ]
+  },
+  "apis": [
+    "./routes/client_routes.js", 
+    "./controllers/client_api.js",
+    "./routes/provider_routes.js",
+    "./controllers/provider_api.js"
+  ]
+}
