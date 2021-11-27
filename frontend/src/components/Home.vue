@@ -78,6 +78,10 @@ export default {
       axios
         .delete(process.env.VUE_APP_API + "/client/" + client_id)
         .catch((err) => console.log("error:", err.message));
+      axios
+        .get(process.env.VUE_APP_API + "/client")
+        .then((response) => (this.clients = response.data))
+        .catch((err) => console.log("error:", err.message));
     },
     showEditClient(client_id) {
       axios

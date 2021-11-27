@@ -275,9 +275,11 @@ export default {
     show_new_client_modal(show_new_client_modal) {
       this.selected_providers = [];
       if (show_new_client_modal){
-        this.client.providers.forEach((provider) => {
+        if (this.client.providers != null){
+          this.client.providers.forEach((provider) => {
           this.selected_providers.push(provider._id);
         });
+        }
       }
     },
   },
