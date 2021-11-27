@@ -10,9 +10,9 @@ module.exports = class API {
             if(req.query["sort-by"] != null){
                 const sort_by = req.query["sort-by"].substring(1);
                 const sort_type = (req.query["sort-by"][0] == "-" ? -1 : 1);
-                clients = await Client.find().sort({[sort_by]: sort_type});
+                clients = await Client.find().populate('providers').sort({[sort_by]: sort_type});
             }else{
-                clients = await Client.find();
+                clients = await Client.find().populate('providers');
             }
                     
             res.status(200).json(clients);
@@ -26,7 +26,7 @@ module.exports = class API {
     static async fetchClientById(req, res){
         const id = req.params.id
         try {
-            const client = await Client.findById(id).populate({ path: 'providers'});
+            const client = await Client.findById(id).populate('providers');
             res.status(200).json(client);
         } catch (err) {
             res.status(404).json({message: err.message});
@@ -48,7 +48,9 @@ module.exports = class API {
     static async updateClient(req, res){
         const id = req.params.id;
         const client = req.query;
+        delete client["providers"];
         try {
+            await Client.findByIdAndUpdate(id, { $set: { providers: [] } });
             await Client.findByIdAndUpdate(id, client);
             res.status(200).json({ message: "Client updated successfully!" });
         } catch (err) {
