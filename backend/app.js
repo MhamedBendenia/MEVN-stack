@@ -29,3 +29,5 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true })
 
 // start the server
 app.listen(port, () => console.log("Server running on http://localhost:" + port));
+
+module.exports = app;
